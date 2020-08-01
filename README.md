@@ -1,1 +1,1 @@
-# comp353_mianproject
+# comp353_main_project
