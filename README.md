@@ -4,7 +4,7 @@
 
 
 
-1. # Setup local env
+# 1. Setup local env
 
 - cd to the target folder
 
@@ -33,13 +33,13 @@ git clone https://github.com/lzg-stack/comp353_main_project.git
 
   
 
-2. # Git basic command line
+# 2. Git basic command line
 
 https://brianway.github.io/2016/08/07/git-basic-git-commands/
 
 
 
-3. # Run this application
+# 3. Run this application
 
 Open your terminal:
 
@@ -55,9 +55,7 @@ Terminal 2 :
 
 ``` php -S localhost:8080```
 
-#### Open Terminal 1 and 2 in same time when you are coding.
-
-
+#### Open Terminal 1 and 2 in same time while you are coding.
 
 ---
 
