@@ -1,8 +1,10 @@
 # comp353_main_project
 
-1. # Setup local env
+#### Tech stack: html + bootstrap5 + PHP +Mysql
 
----
+
+
+1. # Setup local env
 
 - cd to the target folder
 
@@ -33,15 +35,11 @@ git clone https://github.com/lzg-stack/comp353_main_project.git
 
 2. # Git basic command line
 
----
-
 https://brianway.github.io/2016/08/07/git-basic-git-commands/
 
 
 
 3. # Run this application
-
----
 
 Open your terminal:
 
