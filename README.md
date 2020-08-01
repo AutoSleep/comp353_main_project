@@ -72,16 +72,19 @@ Terminal 2 :
 ### Do following steps to open a new branch
 
 ```
-git checkout -b <your branch's name>     // once your path's name change to <your branch's name>, the branch setup successfully
+git checkout -b <your branch's name>     
 ```
 
+- once your path's name change to <your branch's name>, the branch setup successfully
 - The rule of naming the branch: ID_tagName_yourName.   For example: 01_login_Johnny
 
 ---
 
-### extra_info: 
 
-### DB_acc_pwd:
+
+# extra_info: 
+
+#### DB_acc_pwd:
 
 ``` 
 mysql -h sxc353.encs.concordia.ca -u sxc353_1 -p sxc353_1
@@ -89,5 +92,11 @@ mysql -h sxc353.encs.concordia.ca -u sxc353_1 -p sxc353_1
 team2020
 ```
 
-Reference : https://docs.github.com/en/github/using-git
+#### How to use Github 
+
+​	Reference : https://docs.github.com/en/github/using-git
+
+#### Tools :
+
+​	Book: https://education.fsu.edu/wp-content/uploads/2015/04/Learning-PHP-MySQL-JavaScript-and-CSS-2nd-Edition-1.pdf
 
