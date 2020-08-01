@@ -1,12 +1,101 @@
 # comp353_main_project
 
-git basic CMD
+1. #### Setup local env
 
---git add . (这里的.的意思是all)
-#h4 请在自己的branch内工作！！！！（不许在直接在master内写代码）
-branch的命名规则为 编号_tag名_自己的名字 如：01_login.php_Leizhou
-（如何用指令开出一个branch）
-https://www.atlassian.com/git/tutorials/using-branches/git-checkout
+---
 
-完成一个之后等待 codereview 才会加入到 master
+- cd to the target folder
+
+```http
+git clone https://github.com/lzg-stack/comp353_main_project.git
+```
+
+- install git (cli version)
+
+  https://git-scm.com/book/en/v2/Getting-Started-Installing-Git
+
+- install php (cli) 
+
+  ```
+  brew install php@7.1
+  ```
+
+  https://www.youtube.com/watch?v=usYGrAi5PE8
+
+- config your git 
+
+  ```
+  git config user.email "youremail@yourdomain.com"
+  git config --list
+  ```
+
+#### Reference : https://docs.github.com/en/github/using-git
+
+
+
+
+
+
+
+2. #### Git basic command line
+
+---
+
+https://brianway.github.io/2016/08/07/git-basic-git-commands/
+
+
+
+3. #### Run this application
+
+---
+
+Open your terminal:
+
+Terminal 1 : 
+
+```
+ssh -L 3306:sxc353.encs.concordia.ca:3306 zho_lei@login.encs.concordia.ca
+
+&N)h5vM6RbN,
+```
+
+Terminal 2 : 
+
+``` php -S localhost:8080```
+
+#### Open Terminal 1 and 2 in same time when you are coding.
+
+
+
+---
+
+
+
+
+
+# Important 
+
+### Plz don't write driectly write your code in master branch!!! 
+
+### Plz open a new branch instead of directly or indirectly writing your code in master branch!!!
+
+### Do following steps to open a new branch
+
+```
+git checkout -b <your branch's name>     // once your path's name change to <your branch's name>, the branch setup successfully
+```
+
+- The rule of naming the branch: ID_tagName_yourName.   For example: 01_login_Johnny
+
+---
+
+### DB_acc_pwd:
+
+``` 
+mysql -h sxc353.encs.concordia.ca -u sxc353_1 -p sxc353_1
+
+team2020
+```
+
+
 
