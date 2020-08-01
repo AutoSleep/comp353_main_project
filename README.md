@@ -46,9 +46,8 @@ Open your terminal:
 Terminal 1 : 
 
 ```
-ssh -L 3306:sxc353.encs.concordia.ca:3306 zho_lei@login.encs.concordia.ca
-
-&N)h5vM6RbN,
+ssh -L 3306:sxc353.encs.concordia.ca:3306 <youname>@login.encs.concordia.ca
+<password>
 ```
 
 Terminal 2 : 
