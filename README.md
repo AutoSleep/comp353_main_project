@@ -67,7 +67,7 @@ Terminal 2 :
 
 
 
-# Important 
+# 🌟Important 
 
 ### Don't driectly write your code in master branch!!! 
 
