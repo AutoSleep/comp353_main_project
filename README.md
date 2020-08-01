@@ -1,6 +1,6 @@
 # comp353_main_project
 
-1. #### Setup local env
+1. # Setup local env
 
 ---
 
@@ -29,15 +29,9 @@ git clone https://github.com/lzg-stack/comp353_main_project.git
   git config --list
   ```
 
-#### Reference : https://docs.github.com/en/github/using-git
+  
 
-
-
-
-
-
-
-2. #### Git basic command line
+2. # Git basic command line
 
 ---
 
@@ -45,7 +39,7 @@ https://brianway.github.io/2016/08/07/git-basic-git-commands/
 
 
 
-3. #### Run this application
+3. # Run this application
 
 ---
 
@@ -75,9 +69,9 @@ Terminal 2 :
 
 # Important 
 
-### Plz don't write driectly write your code in master branch!!! 
+### Don't driectly write your code in master branch!!! 
 
-### Plz open a new branch instead of directly or indirectly writing your code in master branch!!!
+### Open a new branch instead of directly or indirectly writing your code in master branch!!!
 
 ### Do following steps to open a new branch
 
@@ -89,6 +83,8 @@ git checkout -b <your branch's name>     // once your path's name change to <you
 
 ---
 
+### extra_info: 
+
 ### DB_acc_pwd:
 
 ``` 
@@ -97,5 +93,5 @@ mysql -h sxc353.encs.concordia.ca -u sxc353_1 -p sxc353_1
 team2020
 ```
 
-
+Reference : https://docs.github.com/en/github/using-git
 
