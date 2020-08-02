@@ -8,6 +8,7 @@ if(!isset($_SESSION["loggedin"]) || $_SESSION["loggedin"] !== true){
     header("location: login.php");
     exit;
 }
+$username = $_SESSION['username'];
 
 //Get data from html form
 $jobTitle = $_REQUEST['jobTitle'];
@@ -15,10 +16,20 @@ $jobDescription = $_REQUEST['jobDescription'];
 $numEmployeesNeeded = $_REQUEST['numEmployeesNeeded'];
 $jobType = $_REQUEST['jobType'];
 $date = date("Y-m-d");
+$user_id = "";
+$job_id = "";
+$job_type_id = "";
+$sql = "SELECT id FROM User WHERE username='$username'";
+if($result = mysqli_query($link, $sql)){
+    if(mysqli_num_rows($result) > 0){
+        $row = mysqli_fetch_array($result);
+        $user_id = $row['id'];
+    }
+}
 
 //Attempt insert into query
-$sql = "INSERT INTO m_Job_post (job_id, employer_id, title, description, date_posted, is_active, nb_of_needed_employees, job_type_id) VALUES
-(1, 1, '$jobTitle', '$jobDescription', '$date', 1, '$numEmployeesNeeded', '$jobType')";
+$sql = "INSERT INTO m_Job_post (employer_id, title, description, date_posted, is_active, nb_of_needed_employees, job_type_id) VALUES
+($user_id, '$jobTitle', '$jobDescription', '$date', 1, '$numEmployeesNeeded', '$jobType')";
 
 ?>   
     <h1>
