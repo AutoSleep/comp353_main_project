@@ -102,9 +102,9 @@ if($_SERVER["REQUEST_METHOD"] == "POST"){
                     }
                 }
                 if($user_type == "Employer"){
-                    $sql = "INSERT INTO Employer (user_id) VALUES ('$user_id')";
+                    $sql = "INSERT INTO m_Employer (user_id) VALUES ('$user_id')";
                 } else {
-                    $sql = "INSERT INTO Job_seeker (user_id) VALUES ('$user_id')";
+                    $sql = "INSERT INTO m_Job_seeker (user_id) VALUES ('$user_id')";
                 }
                 if(mysqli_query($link, $sql)){
                     echo "Records inserted successfully.";

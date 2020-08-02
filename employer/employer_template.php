@@ -1,4 +1,7 @@
-<!DOCTYPE html>
+<?php 
+session_start();
+require_once 'config.php';
+?>
 <html>
     <head>
         <meta charset="utf-8">
@@ -9,7 +12,7 @@
         <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous"></script>
         <!-- Bootstrap CSS -->
         <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
-        <title>Employer Home</title>
+        <title><?php startblock('title') ?><?php endblock() ?></title>
     </head>
     <body>
         <nav class="navbar navbar-expand-md bg-primary navbar-dark fixed-top">
@@ -20,34 +23,26 @@
             <div class="collapse navbar-collapse" id="collapsibleNavbar">
                 <ul class="navbar-nav">
                     <li class="nav-item">
-                        <a class="nav-link" href="employer_home.html">Home</a>
+                        <a class="nav-link" href="employer_home.php">Home</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link" href="employer_jobs.html">Jobs</a>
+                        <a class="nav-link" href="employer_jobs.php">Jobs</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link" href="employer_applications.html">Applications</a>
+                        <a class="nav-link" href="employer_applications.php">Applications</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link" href="employer_membership.html">Membership</a>
+                        <a class="nav-link" href="employer_membership.php">Membership</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link" href="employer_contact.html">Contact Us</a>
+                        <a class="nav-link" href="employer_contact.php">Contact Us</a>
                     </li>
                 </ul>
             </div>
         </nav>
         <div class="container-fluid" style="margin-top:75px;">
-            <div class="row">
-                <div class="col-sm-6">
-                    <h1>Current Jobs Posted</h1>
-                    <a class="btn btn-primary" href="employer_jobs.html" role="button">Go to Job Portal</a>
-                </div>
-                <div class="col-sm-6">
-                    <h1>All Applications</h1>
-                    <a class="btn btn-primary" href="employer_applications.html" role="button">View all applications</a>
-                </div>
-            </div>
+            <?php startblock('content') ?>
+            <?php endblock() ?>
         </div>
     </body>
 </html>
