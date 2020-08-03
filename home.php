@@ -17,6 +17,7 @@
     </main>
 
 
+    <a href="admin/dashboard.php">admin</a>
     <?php 
     include 'template/footer.php'; 
     ?>
