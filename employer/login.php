@@ -5,6 +5,7 @@ session_start();
 // Check if the user is already logged in, if yes then redirect him to welcome page
 if(isset($_SESSION["loggedin"]) && $_SESSION["loggedin"] === true){
     header("location: welcome.php");
+    
     exit;
 }
 
@@ -62,9 +63,20 @@ if($_SERVER["REQUEST_METHOD"] == "POST"){
                             $_SESSION["loggedin"] = true;
                             $_SESSION["id"] = $id;
                             $_SESSION["username"] = $username;
-
+                            $sql = "SELECT user_type FROM User WHERE username='$username'";
+                            $user_type = "";
+                            if($result = mysqli_query($link, $sql)){
+                                if(mysqli_num_rows($result) > 0){
+                                    $row = mysqli_fetch_array($result);
+                                    $user_type = $row['user_type'];
+                                }
+                            }
                             // Redirect user to welcome page
-                            header("location: welcome.php");
+                            if($user_type=="Employer"){
+                                header("location: employer_home.php");
+                            } else {
+                                header("location: welcome.php");
+                            }
                         } else{
                             // Display an error message if password is not valid
                             $password_err = "The password you entered was not valid.";
