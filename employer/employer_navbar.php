@@ -20,6 +20,9 @@
                         <a class="nav-link" href="employer_membership.php">Membership</a>
                     </li>
                     <li class="nav-item">
+                        <a class="nav-link" href="employer_profile.php">Profile</a>
+                    </li>
+                    <li class="nav-item">
                         <a class="nav-link" href="employer_contact.php">Contact Us</a>
                     </li>
                 </ul>
