@@ -19,6 +19,7 @@
                 echo "<th>Education</th>";
                 echo "<th>Work Experience</th>";
                 echo "<th>Date Applied</th>";
+                echo "<th>Send Job Offer</th>";
             echo "</tr>";
             while($row = mysqli_fetch_array($result)){
             echo "<tr>";
@@ -28,6 +29,7 @@
                 echo "<td>" . $row['education'] . "</td>";
                 echo "<td>" . $row['work_experience'] . "</td>";
                 echo "<td>" . $row['date_applied'] . "</td>";
+                echo "<td><a class=\"btn btn-primary\" href=\"employer_job_offer.php\" role=\"button\">Send Offer</a></td>";
             echo "</tr>";
             }
             echo "</table>";

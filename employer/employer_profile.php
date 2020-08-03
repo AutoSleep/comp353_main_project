@@ -25,6 +25,14 @@ if($result = mysqli_query($link, $sql)){
     <h5>Address: <?php echo $address ?></h5>
     <h5>Membership: <?php echo $membership ?></h5>
     <h5>Email: <?php echo $email ?></h5>
-    <a class="btn btn-primary" href="employer_edit_profile.php" role="button">Edit Profile</a>
+    <div class="row">
+        <div class="col-sm-2">
+            <a class="btn btn-primary" href="employer_edit_profile.php" role="button">Edit Profile</a>
+        </div>
+        <div class="col-sm-2">
+        <a class="btn btn-danger" href="employer_delete_profile.php" role="button">Delete Profile</a>
+        </div>
+    </div>
+    
 </div>
 <?php include 'employer_footer.php' ?>
