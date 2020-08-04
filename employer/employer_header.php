@@ -2,7 +2,7 @@
 session_start();
 require_once 'config.php';
 if(!isset($_SESSION["loggedin"]) || $_SESSION["loggedin"] !== true){
-    header("location: login.php");
+    header("location: multi_login.php");
     exit;
 }
 $username = $_SESSION['username'];
@@ -11,9 +11,10 @@ if($result = mysqli_query($link, $sql)){
     if(mysqli_num_rows($result) > 0){
         $row = mysqli_fetch_array($result);
         $user_type = $row['user_type'];
-        if($user_type!="Employer"){
-            header("location: login.php");
-            exit;
+        if($user_type=="Job_seeker"){
+            header("location: home.php");
+        } else if($user_type=="Admin"){
+            header("location: dashboard.php");
         }
     }
 }

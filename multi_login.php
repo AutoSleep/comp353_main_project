@@ -2,15 +2,29 @@
 // Initialize the session
 session_start();
 
-// Check if the user is already logged in, if yes then redirect him to welcome page
-if(isset($_SESSION["loggedin"]) && $_SESSION["loggedin"] === true){
-    header("location: welcome.php");
-    
-    exit;
-}
-
 // Include config file
 require_once "config.php";
+
+// Check if the user is already logged in, if yes then redirect him to welcome page
+if(isset($_SESSION["loggedin"]) && $_SESSION["loggedin"] === true){
+    $username = $_SESSION['username'];
+    $sql = "SELECT user_type FROM User WHERE username='$username'";
+    if($result = mysqli_query($link, $sql)){
+        if(mysqli_num_rows($result) > 0){
+            $row = mysqli_fetch_array($result);
+            $user_type = $row['user_type'];
+            if($user_type=="Employer"){
+                header("location: employer/employer_home.php");
+            } else if($user_type=="Admin"){
+                header("location: dashboard.php");
+            } else {
+                header("location: home.php");
+            }
+        }
+    }
+    
+}
+
 
 // Define variables and initialize with empty values
 $username = $password = "";
@@ -73,9 +87,11 @@ if($_SERVER["REQUEST_METHOD"] == "POST"){
                             }
                             // Redirect user to welcome page
                             if($user_type=="Employer"){
-                                header("location: employer_home.php");
+                                header("location: employer/employer_home.php");
+                            } else if($user_type=="Admin"){
+                                header("location: dashboard.php");
                             } else {
-                                header("location: welcome.php");
+                                header("location: home.php");
                             }
                         } else{
                             // Display an error message if password is not valid
