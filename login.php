@@ -23,6 +23,8 @@
 
         </form>
     </main>
+    <a href="employer/login.php">local</a>
+    <a href="admin/dashboard.php">admin</a>
 
 
     <?php 
