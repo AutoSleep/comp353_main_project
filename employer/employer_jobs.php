@@ -2,7 +2,14 @@
 <title>Jobs</title>
 <?php include 'employer_navbar.php' ?>
     <div class="container-fluid" style="margin-bottom:20px">
-        <a class="btn btn-primary" href="employer_new_job.php" role="button">Post New Job</a>
+        <div class="row">
+            <div class="col-sm-2">
+                <a class="btn btn-primary" href="employer_new_job.php" role="button">Post New Job</a>
+            </div>
+            <div class="col-sm-2">
+                <a class="btn btn-primary" href="employer_job_category.php" role="button">Add New Job Category</a>
+            </div>
+        </div>
     </div>
     <div class="container-fluid">
         <h2>Current Jobs</h2>
@@ -36,7 +43,7 @@
         echo "No records matching your query were found.";
         }
         } else{
-        echo "ERROR: Could not able to execute $sql. " . mysqli_error($link);
+        echo "ERROR: Could not execute $sql. " . mysqli_error($link);
         }
         ?>
     </div>
