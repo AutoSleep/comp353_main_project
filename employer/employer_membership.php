@@ -12,6 +12,7 @@ if(isset($_POST['SubmitButton'])){
     $method_of_payment = $_POST["method_of_payment"];
     $auto_withdrawal = $_POST["auto_withdrawal"];
     $date_of_payment = $_POST["date_of_payment"];
+    $membership = $_POST["membership"];
     $username = $_SESSION['username'];
     $sql = "SELECT id FROM User WHERE username='$username'";
     $user_id = "";
@@ -30,9 +31,10 @@ if(isset($_POST['SubmitButton'])){
     if (empty($date_of_payment)){
         $date_err = "Please Enter Valid Date.";
     }
-    $sql = "INSERT INTO m_Payment (bank_number,method_of_payment,auto_withdrawal,date_of_payment,id) VALUES ('$bank_num', '$method_of_payment','$auto_withdrawal','$date_of_payment','$user_id');";
-
-    if(mysqli_query($link, $sql)){
+    $sql = "INSERT INTO m_Payment (bank_number,method_of_payment,auto_withdrawal,date_of_payment,id) VALUES ('$bank_num', '$method_of_payment','$auto_withdrawal','$date_of_payment','$user_id')
+    ON DUPLICATE KEY UPDATE method_of_payment='$method_of_payment', auto_withdrawal='$auto_withdrawal', date_of_payment='$date_of_payment', id='$user_id';
+    UPDATE User SET membership='$membership' WHERE id='$user_id';";
+    if(mysqli_multi_query($link, $sql)){
 
         echo "Membership records saved successfully!";
     }
@@ -64,7 +66,7 @@ if(isset($_POST['SubmitButton'])){
 
         <div class="form-group">
             <label>Membership:</label>
-                <select class="form-control" name="Membership">
+                <select class="form-control" name="membership">
                     <option value="Prime">Prime Membership</option>
                     <option value="Gold">Gold Membership</option>
                 </select>
