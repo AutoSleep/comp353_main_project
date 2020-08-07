@@ -87,7 +87,7 @@ if($_SERVER["REQUEST_METHOD"] == "POST"){
                             }
                             // Redirect user to welcome page
                             if($user_type=="Employer"){
-                                header("location: employer/employer_home.php");
+                                header("location: employer_home.php");
                             } else if($user_type=="Admin"){
                                 header("location: dashboard.php");
                             } else {

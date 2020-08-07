@@ -65,13 +65,11 @@ if($_SERVER["REQUEST_METHOD"] == "POST"){
     if(empty($username_err) && empty($password_err) && empty($confirm_password_err)){
         
         // Prepare an insert statement
-        $sql = "INSERT INTO User (username, password, membership, email, account_balance, is_active, date_valid_to, account_number, user_type) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?)";
+        $sql = "INSERT INTO User (username, password, membership, email, account_balance, is_active, date_valid_to, user_type) VALUES (?, ?, ?, ?, ?, ?, ?, ?)";
         
         if($stmt = mysqli_prepare($link, $sql)){
             // Bind variables to the prepared statement as parameters
-            mysqli_stmt_bind_param($stmt, "ss", $param_username, $param_password, $membership, $email, $account_balance, $is_active, $date_valid_to, $account_number, $user_type);
-            
-            echo $_POST;
+            mysqli_stmt_bind_param($stmt, "ssssssss", $param_username, $param_password, $membership, $email, $account_balance, $is_active, $date_valid_to, $user_type);
             // Set parameters
             $email = $_POST["email"];
             $user_type = $_POST["userType"];
@@ -85,7 +83,6 @@ if($_SERVER["REQUEST_METHOD"] == "POST"){
             }
             $account_balance = 0;
             $is_active = 1;
-            $account_number = 0;
             $param_username = $username;
             $param_password = password_hash($password, PASSWORD_DEFAULT); // Creates a password hash
             
@@ -110,8 +107,8 @@ if($_SERVER["REQUEST_METHOD"] == "POST"){
                     echo "Records inserted successfully.";
                 } else{
                     echo "ERROR: Could not execute $sql. " . mysqli_error($link);
+
                 }
-                #$sql3 = "INSERT INTO Payment (account_number) VALUES ()";
             } else{
                 echo "Something went wrong. Please try again later." . mysqli_stmt_error($stmt);
             }
@@ -167,7 +164,7 @@ if($_SERVER["REQUEST_METHOD"] == "POST"){
         <div class="container-fluid" style="margin-top:75px;">
         <h2>Sign Up</h2>
         <p>Please fill this form to create an account.</p>
-        <form action="<?php echo htmlspecialchars($_SERVER["PHP_SELF"]); ?>" method="post">
+        <form action="register.php" method="post">
             <div class="form-group <?php echo (!empty($username_err)) ? 'has-error' : ''; ?>">
                 <label>Username</label>
                 <input type="text" name="username" class="form-control" value="<?php echo $username; ?>">
