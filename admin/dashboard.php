@@ -154,8 +154,6 @@ function handleNull($input)
     </div>
 
     <div class="container" style="background-color: #cccccc; border-radius:10px">
-
-
     </div>
 
 
