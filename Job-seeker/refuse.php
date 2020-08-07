@@ -5,7 +5,7 @@ include "template/db.php";
 $job_seeker = $_GET['job_seeker'];
 $job_id = $_GET['job_id'];
 $sql = "Update m_Job_application
-        SET job_accepted = 1
+        SET job_accepted = 0
         Where job_seeker_id = $job_seeker AND job_id = $job_id;";
 
 if (mysqli_query($con, $sql)) {
@@ -25,7 +25,7 @@ if (mysqli_query($con, $sql)) {
         <div class="container text-center">
             <div style="margin-top:100px">
                 <div class="alert alert-warning" role="alert">
-                    <?php echo "Accept this offer successfully"; ?>
+                    <?php echo "Refuse this offer successfully"; ?>
                 </div>
             <?php } else { ?>
             <?php echo "Error updating record: " . mysqli_error($conn);

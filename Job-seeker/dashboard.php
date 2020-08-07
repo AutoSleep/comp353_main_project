@@ -15,7 +15,7 @@ include "template/db.php";
 
 <body>
     <div class="container" style="background-color: #cccccc; border-radius:10px">
-        <h2 class="text-center">User Account</h2>
+        <h2 class="text-center">Accpet Offers</h2>
         <table class="table text-center">
             <thead>
                 <th scope="col">Job ID</th>
@@ -64,7 +64,13 @@ include "template/db.php";
                                 <a type="button" class="btn btn-warning" 
                                 href="accept.php?job_id=<?php echo $job_id ?>&job_seeker=<?php echo $job_seeker ?>">
                                 Accept This Offer</a>
+                                
+                                <a type="button" class="btn btn-danger" 
+                                href="refuse.php?job_id=<?php echo $job_id ?>&job_seeker=<?php echo $job_seeker ?>">
+                                Refuse This Offer</a>
                             <?php
+                            } else {
+
                             }
                             ?>
                         </td>
