@@ -60,14 +60,16 @@ include "template/db.php";
                         <td scope="col"> <?php echo display($row['job_accepted'], 'Accept', '-'); ?> </td>
 
                         <td scope="col">
-                            <?php if ($row['job_offered'] == 1) { ?>
+                            <?php if ($row['job_offered'] == 1 && $row['job_accepted'] == 1) { ?>
+                                <a type="button" class="btn btn-danger" 
+                                href="refuse.php?job_id=<?php echo $job_id ?>&job_seeker=<?php echo $job_seeker ?>">
+                                Refuse This Offer</a>
+                            <?php } elseif($row['job_offered'] == 1 && $row['job_accepted'] == 0){?>
                                 <a type="button" class="btn btn-warning" 
                                 href="accept.php?job_id=<?php echo $job_id ?>&job_seeker=<?php echo $job_seeker ?>">
                                 Accept This Offer</a>
                                 
-                                <a type="button" class="btn btn-danger" 
-                                href="refuse.php?job_id=<?php echo $job_id ?>&job_seeker=<?php echo $job_seeker ?>">
-                                Refuse This Offer</a>
+                                
                             <?php
                             } else {
 
