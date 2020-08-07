@@ -68,11 +68,9 @@ include "template/db.php";
                                 <a type="button" class="btn btn-warning" 
                                 href="accept.php?job_id=<?php echo $job_id ?>&job_seeker=<?php echo $job_seeker ?>">
                                 Accept This Offer</a>
-                                
-                                
                             <?php
                             } else {
-
+                                echo "offer no accpeted yet";
                             }
                             ?>
                         </td>
