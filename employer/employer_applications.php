@@ -22,6 +22,10 @@ $( document ).ready(function() {
     $( ".tableRows" ).click(function() {
         var rowData = $(this).attr("data");
         var parsedData = rowData.split(" ");
+        var status = parsedData[4];
+        if(status.localeCompare("Pending") != 0){
+            return;
+        }
         var name = parsedData[0] + " " + parsedData[1];
         if (confirm("Send job offer to " + name +"?")){
             $.ajax({
@@ -41,30 +45,38 @@ $( document ).ready(function() {
     <?php
     $username = $_SESSION["username"];
     
-    $sql = "SELECT title, date_posted, first_name, last_name, education, work_experience, date_applied, ja.job_id AS job_id, js.user_id AS user_id
+    $sql = "SELECT title, date_posted, first_name, last_name, education, work_experience, date_applied, ja.job_id, job_offered, job_accepted AS job_id, js.user_id AS user_id
     FROM m_Job_seeker js, m_Job_post jp, m_Job_application ja, User 
     WHERE username='$username' AND id=jp.employer_id AND js.user_id=ja.job_seeker_id AND jp.job_id=ja.job_id";
     if($result = mysqli_query($link, $sql)){
         if(mysqli_num_rows($result) > 0){
             echo "<table class='table table-bordered table-hover'>";
-            echo "<tr>";
-                echo "<th>Job Title</th>";
-                echo "<th>Date Posted</th>";
-                echo "<th>Applicant</th>";
-                echo "<th>Education</th>";
-                echo "<th>Work Experience</th>";
-                echo "<th>Date Applied</th>";
-            echo "</tr>";
-            while($row = mysqli_fetch_array($result)){
-            echo "<tr class='tableRows' data='".$row['first_name']." ".$row['last_name']." ".$row['job_id']." ".$row['user_id']."'>";
-                echo "<td>" . $row['title'] . "</td>";
-                echo "<td>" . $row['date_posted'] . "</td>";
-                echo "<td><a>" . $row['first_name'] . " " . $row['last_name'] . "</a></td>";
-                echo "<td>" . $row['education'] . "</td>";
-                echo "<td>" . $row['work_experience'] . "</td>";
-                echo "<td>" . $row['date_applied'] . "</td>";
-            echo "</tr>";
-            }
+                echo "<tr>";
+                    echo "<th>Job Title</th>";
+                    echo "<th>Date Posted</th>";
+                    echo "<th>Applicant</th>";
+                    echo "<th>Education</th>";
+                    echo "<th>Work Experience</th>";
+                    echo "<th>Date Applied</th>";
+                    echo "<th>Status</th>";
+                echo "</tr>";
+                while($row = mysqli_fetch_array($result)){
+                    $status = "Pending";
+                    if($row['job_accepted'] == 1){
+                        $status = "Job Accepted";
+                    } else if($row['job_offered'] == 1){
+                        $status = "Job Offered";
+                    }
+                    echo "<tr class='tableRows' data='".$row['first_name']." ".$row['last_name']." ".$row['job_id']." ".$row['user_id']." ".$status."'>";
+                        echo "<td>" . $row['title'] . "</td>";
+                        echo "<td>" . $row['date_posted'] . "</td>";
+                        echo "<td><a>" . $row['first_name'] . " " . $row['last_name'] . "</a></td>";
+                        echo "<td>" . $row['education'] . "</td>";
+                        echo "<td>" . $row['work_experience'] . "</td>";
+                        echo "<td>" . $row['date_applied'] . "</td>";
+                        echo "<td>" . $status . "</td>";
+                    echo "</tr>";
+                }
             echo "</table>";
             // Free result set
             mysqli_free_result($result);
