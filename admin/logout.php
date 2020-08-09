@@ -2,5 +2,5 @@
 session_start();
 unset($_SESSION["username"]);
 unset($_SESSION["password"]);
-header("location: ../logout.php");
+header("location: ../multi_login.php");
 ?>

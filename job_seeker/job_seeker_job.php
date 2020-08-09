@@ -102,16 +102,14 @@
 	if (isset($_POST['search'])) 
 	{
 
-		if (!empty($_POST['search_keyword']) && !empty($_POST['search_catagory'])){
-				echo "No records matching your query were found.";
-			}
+		
 
-		elseif (!empty($_POST['search_keyword']) || !empty($_POST['search_catagory']))
+		if (!empty($_POST['search_keyword']) || !empty($_POST['search_catagory']))
 		{
 			$key = $_POST['search_keyword'];
 			$industry_type = $_POST['search_catagory'];
 
-			if ((!empty($_POST['search_keyword'])) && empty($_POST['search_catagory'])) {
+			if ((!empty($_POST['search_keyword'])) && ($industry_type == 'Select')) {
 				$sql = "SELECT job_id, employer_id, title, description, date_posted, nb_of_needed_employees, job_type_name FROM m_Job_post,m_Job_type
 				WHERE m_Job_post.job_type_id = m_Job_type.job_type_id AND description LIKE '%$key%'";
 			}
