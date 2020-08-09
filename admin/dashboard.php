@@ -3,37 +3,37 @@
 session_start();
 include 'inc/db.php';
 
-if (!isset($_SESSION['username'])){
-    header("location: http://localhost:8080/login.php");
+if (!isset($_SESSION['username'])) {
+    header("location: ../multi_login.php");
 };
 
 
 function handleNull($input)
-    {
-        if (empty($input)) {
-            echo " - ";
-        } else {
-            echo $input;
-        }
+{
+    if (empty($input)) {
+        echo " - ";
+    } else {
+        echo $input;
     }
+}
 
-    function oc($input)
-    {
-        if ($input == 1) {
-            echo 'Open';
-        } else {
-            echo 'Close';
-        }
+function oc($input)
+{
+    if ($input == 1) {
+        echo 'Open';
+    } else {
+        echo 'Close';
     }
+}
 
-    function offer($input)
-    {
-        if ($input == 1) {
-            echo "Yes";
-        } else {
-            echo "No";
-        }
-    };
+function offer($input)
+{
+    if ($input == 1) {
+        echo "Yes";
+    } else {
+        echo "No";
+    }
+};
 
 ?>
 
@@ -69,7 +69,32 @@ function handleNull($input)
             </thead>
             <tbody>
                 <?php
-                $userData =      mysqli_query($con, "Select User.id,
+
+
+                $checkdata =      mysqli_query($con, "Select User.id,             
+                                                        User.account_balance,
+                                                        User.is_active
+                                                        FROM User
+                                                        WHERE User.user_type = 'Employer';");
+                while ($row = mysqli_fetch_array($checkdata)) {
+                    if ($row['account_balance'] <= 0) {
+                        $user_id = $row['id'];
+                        $upadtequery = mysqli_query($con, "UPDATE User 
+                                                            SET is_active = 0
+                                                            WHERE id = $user_id;");
+                    }
+                    if ($row['account_balance'] > 0) {
+                        $user_id = $row['id'];
+                        $upadtequery = mysqli_query($con, "UPDATE User 
+                                                            SET is_active = 1
+                                                            WHERE id = $user_id;");
+                    }
+                }
+
+
+
+
+                $userdata =      mysqli_query($con, "Select User.id,
                                             User.username,
                                             User.membership,
                                             User.account_balance,
@@ -79,7 +104,7 @@ function handleNull($input)
                                         WHERE User.user_type = 'Employer';");
 
 
-                while ($row = mysqli_fetch_array($userData)) {
+                while ($row = mysqli_fetch_array($userdata)) {
                     $user_id = $row['id'];
                 ?>
                     <tr>
@@ -118,6 +143,28 @@ function handleNull($input)
             </thead>
             <tbody>
                 <?php
+
+
+
+                $checkdata =      mysqli_query($con, "Select User.id,             
+                                                        User.account_balance,
+                                                        User.is_active
+                                                        FROM User
+                                                        WHERE User.user_type = 'Job_seeker';");
+                while ($row = mysqli_fetch_array($checkdata)) {
+                    if ($row['account_balance'] <= 0) {
+                        $user_id = $row['id'];
+                        $upadtequery = mysqli_query($con, "UPDATE User 
+                                                            SET is_active = 0
+                                                            WHERE id = $user_id;");
+                    }
+                    if ($row['account_balance'] > 0) {
+                        $user_id = $row['id'];
+                        $upadtequery = mysqli_query($con, "UPDATE User 
+                                                            SET is_active = 1
+                                                            WHERE id = $user_id;");
+                    }
+                }
 
                 $empolyerData =  mysqli_query($con, "Select User.id,
                                                             User.username,
