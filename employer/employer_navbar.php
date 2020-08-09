@@ -28,7 +28,7 @@
                 </ul>
                 <ul class="navbar-nav ml-auto">
                     <li class="nav-item ml-auto">
-                        <a href="logout.php" class="btn btn-warning">Sign Out</a>
+                        <a href="../logout.php" class="btn btn-warning">Sign Out</a>
                     </li>
                 </ul>
             </div>

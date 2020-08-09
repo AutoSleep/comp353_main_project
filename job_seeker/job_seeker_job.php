@@ -58,7 +58,7 @@
                         <a class="nav-link" href="job_seeker_membership.php">Membership</a>
                     </li>
                     <li class="nav-item">
-          				<a class="nav-link" href="job_seeker_logout.php"> Log out </a>
+          				<a class="nav-link" href="../logout.php"> Log out </a>
                     </li>
                 </ul>
             </div>
@@ -200,7 +200,7 @@
   				}
 			}
 
-            if(empty($_POST['id']) || empty($_POST['employer_id'])){
+            if(empty($job_id) || empty($employer_id)){
                 echo "<div style=\"margin: 10px 75px; padding: 10px 75px;\" class=\"row\">
                 <b>Please Enter Vaild Information</b>
                 </div>";

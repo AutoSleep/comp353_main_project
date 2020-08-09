@@ -22,7 +22,6 @@
         }
     }
 ?>
-
 <?php
 
     $first_N_err = $last_N_err = $email_err = "";
@@ -48,7 +47,7 @@ if(isset($_POST['Edit_Name'])){
         header("Location: job_seeker_profile.php?msg=".$msg);
         exit();
     }
-    $sql = "UPDATE m_Job_seeker SET first_name = '$first_name',last_name = '$last_name' WHERE id = '$id'";
+    $sql = "UPDATE m_Job_seeker SET first_name = '$first_name',last_name = '$last_name' WHERE user_id = '$id'";
 
     if(mysqli_query($link, $sql)){
         $msg = "Modify Successfully!";
@@ -61,7 +60,6 @@ if(isset($_POST['Edit_Name'])){
     }
 }
 ?>
-
 <?php
 if(isset($_POST['Edit_Email'])){
 
@@ -100,7 +98,7 @@ if(isset($_POST['Edit_Experience'])){
         exit();
     }
   
-    $sql = "UPDATE m_Job_seeker SET work_experience = '$experience'  WHERE id = '$id'";
+    $sql = "UPDATE m_Job_seeker SET work_experience = '$experience'  WHERE user_id = '$id'";
 
     if(mysqli_query($link, $sql)){
         $msg = "Modify Successfully!";
@@ -126,7 +124,7 @@ if(isset($_POST['Edit_Education'])){
         exit();
     }
 
-    $sql = "UPDATE m_Job_seeker SET education = '$education' WHERE id = '$id'";
+    $sql = "UPDATE m_Job_seeker SET education = '$education' WHERE user_id = '$id'";
 
     if(mysqli_query($link, $sql)){
         $msg = "Modify Successfully!";
@@ -147,7 +145,8 @@ if(isset($_POST['Edit_Payment'])){
 
     $id = $_SESSION['id'];
 
-    $sql = "UPDATE User SET method_of_payment = '$method_of_payment',auto_withdrawal = '$auto_withdrawal' WHERE id = '$id'";
+    $sql = "UPDATE m_Payment SET method_of_payment = 
+    '$method_of_payment',auto_withdrawal = '$auto_withdrawal' WHERE id = '$id'";
 
     if(mysqli_query($link, $sql)){
         $msg = "Modify Successfully!";
@@ -189,8 +188,8 @@ if(isset($_POST['Edit_Membership'])){
 
 if(isset($_POST['Delete'])){
 
-    $sql = "DELETE m_Job_seeker FROM m_Job_seeker WHERE id='$id';
-            DELETE User FROM User WHERE id='$id';";
+    $sql = "DELETE m_Job_seeker FROM m_Job_seeker WHERE user_id='$id';
+            DELETE User FROM User WHERE user_id='$id';";
     
     if(mysqli_multi_query($link, $sql)){
         $msg = "Error: Delete Processing.";
@@ -240,7 +239,7 @@ if(isset($_POST['Delete'])){
                         <a class="nav-link" href="job_seeker_membership.php">Membership</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link" href="job_seeker_logout.php"> Log out </a>
+                        <a class="nav-link" href="../logout.php"> Log out </a>
                     </li>
                 </ul>
             </div>

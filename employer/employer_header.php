@@ -12,7 +12,7 @@ if($result = mysqli_query($link, $sql)){
         $row = mysqli_fetch_array($result);
         $user_type = $row['user_type'];
         if($user_type=="Job_seeker"){
-            header("location: home.php");
+            header("location: job_seeker/job_seeker_home.php");
         } else if($user_type=="Admin"){
             header("location: dashboard.php");
         }
