@@ -1,10 +1,10 @@
 <?php
 
 session_start();
-include 'inc/db.php';
+include 'db.php';
 
 if (!isset($_SESSION['username'])) {
-    header("location: ../multi_login.php");
+    header("location: multi_login.php");
 };
 
 
@@ -51,7 +51,7 @@ function offer($input)
 <body>
 
 
-    <?php include 'inc/header.php'; ?>
+    <?php include 'header.php'; ?>
 
 
 
@@ -209,8 +209,8 @@ function offer($input)
 
     <div class="container" style="background-color: #cccccc; border-radius:10px">
 
-        <h2 class="text-center">User & Empolyer Activity</h2>
-        <H4 class="text-left" style="text-decoration: underline;">Empolyer Activity</H4>
+        <h2 class="text-center">User & Employer Activity</h2>
+        <H4 class="text-left" style="text-decoration: underline;">Employer Activity</H4>
         <table class="table text-center ">
             <thead>
                 <th scope="col">Job ID</th>
@@ -314,7 +314,7 @@ function offer($input)
         </table>
     </div>
     <?php mysqli_close($con); ?>
-    <?php include 'inc/footer.php' ?>
+    <?php include 'footer.php' ?>
 </body>
 
 </html>

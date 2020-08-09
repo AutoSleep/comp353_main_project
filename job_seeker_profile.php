@@ -5,7 +5,7 @@
     session_start();
 
     if(!isset($_SESSION["loggedin"]) || $_SESSION["loggedin"] !== true){
-        header("location: login.php");
+        header("location: multi_login.php");
         exit;
     }
     $username = $_SESSION['username'];
@@ -15,7 +15,7 @@
                 $row = mysqli_fetch_array($result);
                 $user_type = $row['user_type'];
             if($user_type=="Employer"){
-                header("location: emoloyer_home.php");
+                header("location: employer_home.php");
             } else if($user_type=="Admin"){
                 header("location: dashboard.php");
             }
@@ -239,7 +239,7 @@ if(isset($_POST['Delete'])){
                         <a class="nav-link" href="job_seeker_membership.php">Membership</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link" href="../logout.php"> Log out </a>
+                        <a class="nav-link" href="logout.php"> Log out </a>
                     </li>
                 </ul>
             </div>

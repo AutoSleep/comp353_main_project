@@ -4,7 +4,7 @@ include_once 'config.php';
 session_start();
 
 if (!isset($_SESSION["loggedin"]) || $_SESSION["loggedin"] !== true) {
-    header("location: login.php");
+    header("location: multi_login.php");
     exit;
 }
 $username = $_SESSION['username'];
@@ -14,7 +14,7 @@ if ($result = mysqli_query($link, $sql)) {
         $row = mysqli_fetch_array($result);
         $user_type = $row['user_type'];
         if ($user_type == "Employer") {
-            header("location: emoloyer_home.php");
+            header("location: employer_home.php");
         } else if ($user_type == "Admin") {
             header("location: dashboard.php");
         }
@@ -58,7 +58,7 @@ if ($result = mysqli_query($link, $sql)) {
                     <a class="nav-link" href="job_seeker_membership.php">Membership</a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link" href="../logout.php"> Log out </a>
+                    <a class="nav-link" href="logout.php"> Log out </a>
                 </li>
             </ul>
         </div>
@@ -179,52 +179,44 @@ if ($result = mysqli_query($link, $sql)) {
 
             <?php
 
-                $id = $_SESSION['id'];
+            $id = $_SESSION['id'];
 
-                $sql = "SELECT job_id, job_offered, job_accepted,employer_id, date_applied FROM m_Job_application WHERE job_seeker_id ='$id'";
+            $sql = "SELECT job_id, job_offered, employer_id, date_applied FROM m_Job_application WHERE job_seeker_id ='$id'";
 
-                if($result = mysqli_query($link,$sql)){
+            if ($result = mysqli_query($link, $sql)) {
 
-                    if(mysqli_num_rows($result) > 0){
-                       echo"<table style=\"text-align: center; margin: 10px;padding: 10px;\" class=\"table table-striped\">
+                if (mysqli_num_rows($result) > 0) {
+                    echo "<table style=\"text-align: center; margin: 10px;padding: 10px;\" class=\"table table-striped\">
                             <thead>
                                 <tr>
                                     <th scope=\"col\">Jobs ID</th>
                                     <th scope=\"col\">Employer ID</th>
                                     <th scope=\"col\">Jobs Offered</th>
-                                    <th scope=\"col\">Jobs Accept</th>
                                     <th scope=\"col\">Date of Applied</th>
                                 </tr>
                             </thead>";
-                        while($row = mysqli_fetch_array($result)){
-                            echo "<tbody>";
-                                echo "<tr>";
-                                    echo "<td>" . $row['job_id'] . "</td>";
-                                    echo "<td>" . $row['employer_id'] . "</td>";
-                                    if($row['job_offered'] ==  '1'){
-                                        echo "<td> Offered </td>";
-                                    }
-                                    else{
-                                        echo "<td> Not yet </td>";
-                                    }
-                                    if($row['job_accepted'] ==  '1'){
-                                        echo "<td> Accept </td>";
-                                    }
-                                    else{
-                                        echo "<td> Not yet </td>";
-                                    }
-                                    echo "<td>" . $row['date_applied'] . "</td>";
-                                echo "</tr>";
-                            echo "</tbody>";                
+                    while ($row = mysqli_fetch_array($result)) {
+                        echo "<tbody>";
+                        echo "<tr>";
+                        echo "<td>" . $row['job_id'] . "</td>";
+                        echo "<td>" . $row['employer_id'] . "</td>";
+                        if ($row['job_offered'] ==  '1') {
+                            echo "<td> Offered </td>";
+                        } else {
+                            echo "<td> Not yet </td>";
                         }
-                        echo "</table>";
-        
-                    //mysqli_free_result($result);
-                    } else{
-                    echo "No records matching your query were found.";
+                        echo "<td>" . $row['date_applied'] . "</td>";
+                        echo "</tr>";
+                        echo "</tbody>";
                     }
+                    echo "</table>";
+
+                    //mysqli_free_result($result);
+                } else {
+                    echo "No records matching your query were found.";
                 }
-                ?>
+            }
+            ?>
         </div>
 
         <div style="margin: 20px 75px; padding: 20px 75px;" class="row">
@@ -257,7 +249,7 @@ if ($result = mysqli_query($link, $sql)) {
                 job_offered = '1'";
 
                 if (mysqli_query($link, $sql)) {
-                    echo "Apply Successfully!";
+                    echo "Applied Successfully!";
                 } else {
                     echo "Error: Not Apply.";
                 }
@@ -279,7 +271,7 @@ if ($result = mysqli_query($link, $sql)) {
                 job_offered = '1'";
 
                 if (mysqli_query($link, $sql)) {
-                    echo "Deny successfully";
+                    echo "Denied job successfully";
                 } else {
                     // echo "Error:".$sql."<br>".mysqli_error($link);
                     echo "Error: Not Deny.";

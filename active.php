@@ -1,10 +1,10 @@
-<?php include 'inc/db.php' ?>
+<?php include 'db.php' ?>
 
 <?php
 $id = $_GET["id"];
 
 $sql = "UPDATE User
-        SET is_active = 0
+        SET is_active = 1
         WHERE User.id = $id;";
 
 if (mysqli_query($con, $sql)) {
@@ -26,10 +26,10 @@ if (mysqli_query($con, $sql)) {
         <div class="container text-center">
             <div style="margin-top:100px">
                 <div class="alert alert-warning" role="alert">
-                    <?php echo "The Account of User ID ( " . $id . " ) deactive successfully"; ?>
+                    <?php echo "The Account of User ID ( " . $id . " ) activated successfully"; ?>
                 </div>
             <?php } else { ?>
-            <?php echo "Error updating record: " . mysqli_error($conn);
+            <?php echo "Error updating record: " . mysqli_error($con);
         } ?>
             <br>
             <a href="dashboard.php">Back to Page</a>
