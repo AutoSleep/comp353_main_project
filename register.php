@@ -78,6 +78,7 @@ if($_SERVER["REQUEST_METHOD"] == "POST"){
                 $account_balance = -50;
                 $date_valid_to = date('y-m-d', strtotime('+1 months'));
             } else {
+                $user_type = "Job_seeker";
                 $membership = "Basic";
                 $date_valid_to = date('y-m-d', strtotime('+1 years'));
             }
