@@ -179,44 +179,52 @@ if ($result = mysqli_query($link, $sql)) {
 
             <?php
 
-            $id = $_SESSION['id'];
+                $id = $_SESSION['id'];
 
-            $sql = "SELECT job_id, job_offered, employer_id, date_applied FROM m_Job_application WHERE job_seeker_id ='$id'";
+                $sql = "SELECT job_id, job_offered, job_accepted,employer_id, date_applied FROM m_Job_application WHERE job_seeker_id ='$id'";
 
-            if ($result = mysqli_query($link, $sql)) {
+                if($result = mysqli_query($link,$sql)){
 
-                if (mysqli_num_rows($result) > 0) {
-                    echo "<table style=\"text-align: center; margin: 10px;padding: 10px;\" class=\"table table-striped\">
+                    if(mysqli_num_rows($result) > 0){
+                       echo"<table style=\"text-align: center; margin: 10px;padding: 10px;\" class=\"table table-striped\">
                             <thead>
                                 <tr>
                                     <th scope=\"col\">Jobs ID</th>
                                     <th scope=\"col\">Employer ID</th>
                                     <th scope=\"col\">Jobs Offered</th>
+                                    <th scope=\"col\">Jobs Accept</th>
                                     <th scope=\"col\">Date of Applied</th>
                                 </tr>
                             </thead>";
-                    while ($row = mysqli_fetch_array($result)) {
-                        echo "<tbody>";
-                        echo "<tr>";
-                        echo "<td>" . $row['job_id'] . "</td>";
-                        echo "<td>" . $row['employer_id'] . "</td>";
-                        if ($row['job_offered'] ==  '1') {
-                            echo "<td> Offered </td>";
-                        } else {
-                            echo "<td> Not yet </td>";
+                        while($row = mysqli_fetch_array($result)){
+                            echo "<tbody>";
+                                echo "<tr>";
+                                    echo "<td>" . $row['job_id'] . "</td>";
+                                    echo "<td>" . $row['employer_id'] . "</td>";
+                                    if($row['job_offered'] ==  '1'){
+                                        echo "<td> Offered </td>";
+                                    }
+                                    else{
+                                        echo "<td> Not yet </td>";
+                                    }
+                                    if($row['job_accepted'] ==  '1'){
+                                        echo "<td> Accept </td>";
+                                    }
+                                    else{
+                                        echo "<td> Not yet </td>";
+                                    }
+                                    echo "<td>" . $row['date_applied'] . "</td>";
+                                echo "</tr>";
+                            echo "</tbody>";                
                         }
-                        echo "<td>" . $row['date_applied'] . "</td>";
-                        echo "</tr>";
-                        echo "</tbody>";
-                    }
-                    echo "</table>";
-
+                        echo "</table>";
+        
                     //mysqli_free_result($result);
-                } else {
+                    } else{
                     echo "No records matching your query were found.";
+                    }
                 }
-            }
-            ?>
+                ?>
         </div>
 
         <div style="margin: 20px 75px; padding: 20px 75px;" class="row">
