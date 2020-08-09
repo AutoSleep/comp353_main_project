@@ -24,7 +24,6 @@
         }
     }
 ?>
-
 <?php
     $bank_num_err = $date_err = $bank_num = "";
 
@@ -48,10 +47,8 @@
         
         $sql = "INSERT INTO m_Payment (bank_number,method_of_payment,auto_withdrawal,date_of_payment,id) VALUES ('$bank_num', '$method_of_payment','$auto_withdrawal','$date_of_payment','$id');";
 
-        $sql .= "UPDATE User SET membership = '$membership',date_valid_to = '$date_valid_to' WHERE id = '$id'";
 
-
-        if(mysqli_multi_query($link, $sql)){
+        if(mysqli_query($link, $sql)){
             $msg = "Payment Successfully!";
             header("Location: job_seeker_membership.php?msg=".$msg);
         }
@@ -98,7 +95,7 @@
                         <a class="nav-link" href="job_seeker_membership.php">Membership</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link" href="job_seeker_logout.php"> Log out </a>
+                        <a class="nav-link" href="../logout.php"> Log out </a>
                     </li>
                 </ul>
             </div>
