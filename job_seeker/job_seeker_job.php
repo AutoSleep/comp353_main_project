@@ -111,7 +111,7 @@
 
 			if ((!empty($_POST['search_keyword'])) && ($industry_type == 'Select')) {
 				$sql = "SELECT job_id, employer_id, title, description, date_posted, nb_of_needed_employees, job_type_name FROM m_Job_post,m_Job_type
-				WHERE m_Job_post.job_type_id = m_Job_type.job_type_id AND description LIKE '%$key%'";
+				WHERE description LIKE '%$key%'";
 			}
 
 			if ((!empty($_POST['search_catagory'])) && empty($_POST['search_keyword'])) {
