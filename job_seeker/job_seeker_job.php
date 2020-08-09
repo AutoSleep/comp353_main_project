@@ -238,7 +238,7 @@
         		echo "<div style=\"margin: 10px 75px; padding: 10px 75px;\" class=\"row\">
                 			<b>Error: Not Apply.</b>
                 		</div>";
-            	//echo "Error:".$sql."<br>".mysqli_error($link);
+            	echo "Error:".$sql."<br>".mysqli_error($link);
                 exit();
         	}
 		}

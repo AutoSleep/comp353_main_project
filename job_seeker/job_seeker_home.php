@@ -3,6 +3,10 @@ include_once 'config.php';
 
 session_start();
 
+
+echo $_SESSION['username'];
+echo $_SESSION['id'];
+
 if (!isset($_SESSION["loggedin"]) || $_SESSION["loggedin"] !== true) {
     header("location: login.php");
     exit;
