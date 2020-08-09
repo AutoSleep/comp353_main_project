@@ -4,7 +4,30 @@
 <div class="container-fluid" style="margin-bottom:20px">
     <div class="row">
         <div class="col-sm-2">
-            <a class="btn btn-primary" href="employer_new_job.php" role="button">Post New Job</a>
+            <?php
+            $username = $_SESSION["username"];
+            $numJobs = 0;
+            $sql = "SELECT COUNT(*) AS num FROM m_Job_post, User WHERE username='$username' AND employer_id=id";
+            if($result = mysqli_query($link, $sql)){
+                if(mysqli_num_rows($result) > 0){
+                    $row = mysqli_fetch_array($result);
+                    $numJobs = $row['num'];
+                }
+            }
+            $membership = "";
+            $sql = "SELECT membership FROM User WHERE username='$username'";
+            if($result = mysqli_query($link, $sql)){
+                if(mysqli_num_rows($result) > 0){
+                    $row = mysqli_fetch_array($result);
+                    $membership = $row['membership'];
+                }
+            }
+            if($numJobs>5 && $membership == "Prime"){
+                echo "<a class='btn btn-primary' role='button'>Upgrade your membership to post more jobs</a>";
+            } else {
+                echo "<a class='btn btn-primary' href='employer_new_job.php' role='button'>Post New Job</a>";
+            }
+            ?>
         </div>
         <div class="col-sm-2">
             <a class="btn btn-primary" href="employer_job_category.php" role="button">Add New Job Category</a>

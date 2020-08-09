@@ -27,7 +27,7 @@ $( document ).ready(function() {
             return;
         }
         var name = parsedData[0] + " " + parsedData[1];
-        if (confirm("Send job offer to " + name +"?")){
+        if (confirm("Send job offer to " + name +"?"+ parsedData[2] +" "+ parsedData[3] +" "+parsedData[4])){
             $.ajax({
                 type: "POST",
                 url: "employer_applications.php",
@@ -45,7 +45,7 @@ $( document ).ready(function() {
     <?php
     $username = $_SESSION["username"];
     
-    $sql = "SELECT title, date_posted, first_name, last_name, education, work_experience, date_applied, ja.job_id, job_offered, job_accepted AS job_id, js.user_id AS user_id
+    $sql = "SELECT title, date_posted, first_name, last_name, education, work_experience, date_applied, ja.job_id  AS job_id, job_offered, job_accepted, js.user_id AS user_id
     FROM m_Job_seeker js, m_Job_post jp, m_Job_application ja, User 
     WHERE username='$username' AND id=jp.employer_id AND js.user_id=ja.job_seeker_id AND jp.job_id=ja.job_id";
     if($result = mysqli_query($link, $sql)){
