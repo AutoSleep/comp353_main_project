@@ -56,7 +56,7 @@ function offer($input)
 
 
     <div class="container" style="background-color: #cccccc; border-radius:10px">
-        <h2 class="text-center">User Account</h2>
+        <h2 class="text-center">Employer</h2>
         <table class="table text-center">
             <thead>
                 <th scope="col">ID</th>
@@ -72,21 +72,21 @@ function offer($input)
 
 
                 $checkdata =      mysqli_query($con, "Select User.id,             
-                                                        User.account_balance,
+                                                        User.date_valid_to,
                                                         User.is_active
                                                         FROM User
                                                         WHERE User.user_type = 'Employer';");
+
+
+
+
                 while ($row = mysqli_fetch_array($checkdata)) {
-                    if ($row['account_balance'] <= 0) {
+                    if (date($row['date_valid_to']) < date("Y-m-d")) {
+
                         $user_id = $row['id'];
+                        echo $user_id;
                         $upadtequery = mysqli_query($con, "UPDATE User 
                                                             SET is_active = 0
-                                                            WHERE id = $user_id;");
-                    }
-                    if ($row['account_balance'] > 0) {
-                        $user_id = $row['id'];
-                        $upadtequery = mysqli_query($con, "UPDATE User 
-                                                            SET is_active = 1
                                                             WHERE id = $user_id;");
                     }
                 }
@@ -115,11 +115,28 @@ function offer($input)
                         <td scope="col"> $ <?php echo $row['account_balance']; ?> </td>
                         <td scope="col"> <?php echo $row['date_valid_to']; ?> </td>
                         <td scope="col">
-                            <div type="button" class="btn btn-info"> <?php echo oc($row['is_active']) ?> </div>
+                            <?php if ($row['is_active'] == 1) { ?>
+                                <div type="button" class="btn btn-success"> <?php echo oc($row['is_active']) ?> </div>
+                            <?php
+                            } else {
+                            ?>
+                                <div type="button" class="btn btn-info"> <?php echo oc($row['is_active']) ?> </div>
+                            <?php
+                            }
+                            ?>
                         </td>
                         <td scope="col">
-                            <a type="button" class="btn btn-warning" href="active.php?id=<?php echo $user_id ?>">Active</a>
-                            <a type="button" class="btn btn-danger" href="deactive.php?id=<?php echo $user_id ?>">Deactive</a>
+                            <?php if ($row['is_active'] == 1) {
+                            ?>
+                                <a type="button" class="btn btn-danger" href="deactive.php?id=<?php echo $user_id ?>">Deactive</a>
+                            <?php
+                            } else {
+                            ?>
+
+                                <a type="button" class="btn btn-warning" href="active.php?id=<?php echo $user_id ?>">Active</a>
+                            <?php
+                            }
+                            ?>
                         </td>
                     </tr>
                 <?php
@@ -130,7 +147,7 @@ function offer($input)
 
 
 
-        <h2 class="text-center">Employer Account</h2>
+        <h2 class="text-center">Job_seeker</h2>
         <table class="table text-center ">
             <thead>
                 <th scope="col">ID</th>
@@ -143,25 +160,17 @@ function offer($input)
             </thead>
             <tbody>
                 <?php
-
-
-
                 $checkdata =      mysqli_query($con, "Select User.id,             
-                                                        User.account_balance,
-                                                        User.is_active
-                                                        FROM User
-                                                        WHERE User.user_type = 'Job_seeker';");
+                                                            User.date_valid_to,
+                                                            User.is_active
+                                                            FROM User
+                                                            WHERE User.user_type = 'Job_seeker';");
                 while ($row = mysqli_fetch_array($checkdata)) {
-                    if ($row['account_balance'] <= 0) {
+                    if (date($row['date_valid_to']) < date("Y-m-d")) {
+
                         $user_id = $row['id'];
                         $upadtequery = mysqli_query($con, "UPDATE User 
                                                             SET is_active = 0
-                                                            WHERE id = $user_id;");
-                    }
-                    if ($row['account_balance'] > 0) {
-                        $user_id = $row['id'];
-                        $upadtequery = mysqli_query($con, "UPDATE User 
-                                                            SET is_active = 1
                                                             WHERE id = $user_id;");
                     }
                 }
@@ -177,7 +186,6 @@ function offer($input)
 
                 while ($row = mysqli_fetch_array($empolyerData)) {
                     $empolyer_id = $row['id'];
-                    echo $empolyer_id;
                 ?>
                     <tr>
                         <td scope="col"> <?php echo $empolyer_id; ?> </td>
@@ -186,11 +194,28 @@ function offer($input)
                         <td scope="col"> $ <?php echo $row['account_balance']; ?> </td>
                         <td scope="col"> <?php echo $row['date_valid_to']; ?> </td>
                         <td scope="col">
-                            <div type="button" class="btn btn-info"> <?php echo oc($row['is_active']) ?> </div>
+                            <?php if ($row['is_active'] == 1) { ?>
+                                <div type="button" class="btn btn-success"> <?php echo oc($row['is_active']) ?> </div>
+                            <?php
+                            } else {
+                            ?>
+                                <div type="button" class="btn btn-info"> <?php echo oc($row['is_active']) ?> </div>
+                            <?php
+                            }
+                            ?>
                         </td>
                         <td scope="col">
-                            <a type="button" class="btn btn-warning" href="active.php?id=<?php echo $empolyer_id; ?>">Active</a>
-                            <a type="button" class="btn btn-danger" href="deactive.php?id=<?php echo $empolyer_id; ?>">Deactive</a>
+                            <?php if ($row['is_active'] == 1) {
+                            ?>
+                                <a type="button" class="btn btn-danger" href="deactive.php?id=<?php echo $user_id ?>">Deactive</a>
+                            <?php
+                            } else {
+                            ?>
+
+                                <a type="button" class="btn btn-warning" href="active.php?id=<?php echo $user_id ?>">Active</a>
+                            <?php
+                            }
+                            ?>
                         </td>
                     </tr>
                 <?php
